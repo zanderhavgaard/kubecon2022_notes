@@ -712,3 +712,55 @@ NATS JetStream:
 - test each tool end-to-end with different patterns of use/load
 - expect errors and retries
 - be cloud-agnostic, but also use cloud and push unnecessary complexity, like using managed k8s clusters.
+
+## Service mesh at scale: how xbox secures 22k pods with Linkerd
+
+Choosing which service mesh to use:
+
+- Easily provide mTLS
+- implements service mesh interface (SMI)
+  - which enables canary deployments
+- efficient resource useage
+- low latency impact
+- observability
+- easy setup and maintenance
+
+They looked at:
+
+- linkerd
+- consul
+- istio
+- aspen mesh
+
+Linkerd was the best fit for their requirements / fit the needs
+
+How xbox uses linkerd:
+
+- mTLS with cert rotation
+  - with zero config
+- high availability mode
+  - important for production
+- metrics with Prometheus
+- SMI extension for canary deployments
+
+"setup seemed too easy"
+
+canary deployments is hard:
+
+- for things that are not HTTP servers is hard, like asynchronous and cronjob type workloads.
+- not all services have constant or high traffic volume -> how to evaluate if a deployment is a success?
+- traffic to livenes / readiness endpoints skew canary evaluation
+
+engineering and cost savings
+
+- was not a goal, but happened naturally
+- engineers freed from managing mTLS
+- reduced money spend on other observability solutions
+
+Next up in the xbox linkerd journey:
+
+- service-to-service auth
+- multi cluster communication and failover
+- proactive fault injection, chaos engineering
+
+
