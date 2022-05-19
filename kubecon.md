@@ -670,3 +670,45 @@ Integraging Pixie:
 
 - input PxL script to capture data
 - output is the data ...
+
+## Choosing cloud native technologies for the journey to multi-cloud
+
+Form3 (the example company) provides services for processing inter-bank transactions.
+Challenges: process large volume of payments
+
+- large volume
+- must be reliable and durable
+- difficult to maintain many connections and services
+
+Backing sector is slow moving and one of the last to move to the cloud ...
+... and worried about vendor lock-in.
+
+Cloud agnostic technology is ideal to avoid vendor lock-in.
+
+They deploy the payment service to AWS, Azure and GCP on their managed k8s platforms.
+These are linked to on-prem clusters for regulation reasons.
+They run a dev/test/prod on each public cloud.
+
+Cilium:
+
+- Uses eBPF to provide network functionality on linux systems.
+- network policies
+- cloud agnostic
+- inbuilt observability
+
+They are not using cluster mesh, but edge routers to connect the on-prem infra to the cloud infra.
+
+> TODO read blog about cilium cluster mesh
+
+NATS JetStream:
+
+- messaging system
+- mixed push/pull architecture
+- cloud agnostic
+- scalable and durable
+
+"rules of thumb" (for choosing tools):
+
+- test each tool end-to-end with different patterns of use/load
+- expect errors and retries
+- be cloud-agnostic, but also use cloud and push unnecessary complexity, like using managed k8s clusters.
