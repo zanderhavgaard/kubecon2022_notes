@@ -535,3 +535,41 @@ should the users be able to interact with the VMs outside of k8s? (can I ssh to 
 
 Implementation:
 uses a cluster autoscaler to determine the right number of nodes for the required workloads
+
+# KubeCon Day 2
+
+## Chaos engineering
+
+Service reliability:
+Important metrics are MTTR, MTTF (Mean time to failure)
+
+(Chaos engineering is) "the science of breaking things proactively"
+
+Mircoservices presents a reliability challenge, our applications are dependent on other services, that will go down ...
+
+"Chaos engineering is a devops culture"
+
+"Chaos testing" -> do a chaos test before integrating new code
+
+`Litmus` -> end-to-end chaos engineering platform
+
+We want developers to apply chaos to the service before we run it -> "shift left" -> develop **with** chaos?
+
+Developing with chaos makes it much easier to introduce chaos in production
+
+We want to test resilience with chaos both before integrating (CI) and before deploying (CD)
+
+`Okteto` -> tool to deploy dev envs to k8s
+
+We can use `Litmus` to orchestrate "chaos" tests, eg. kill this service at this rate, and apply this amount of load to this serivce, for x amount of time
+
+Feature of `Litmus` is that it has a nice gui, making sharing results of experiments with colleagues easy
+
+`oketeto` can be used to "sync" your local dev env, to a container running in a cluster.
+This is cool b/c we can then edit the code, run it in the cluster, and then continousely run the chaos test against the code as we write it.
+
+> TODO look more into oktetu -> looks a bit like bind-mounting your code in a docker container while coding, but for k8s?
+
+Running chaos tests in pipelines when we integrate new work implies that we can actually **prove** that a change made the service more or less resilient
+
+We need to make chaos engineering a commodity, by making it easy and simple to do, the more chaos test we run, the better we get at it
