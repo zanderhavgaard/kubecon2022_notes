@@ -16,6 +16,7 @@
 - the rise of high level interfaces (ala PV vs PVC), dev consumes resources defined by DevOps/AppOps/Ops
   - golden paths / paved roads
 - debugging k8s applications using ephemeral containers
+- OpenTelemetry looks like it will be very important in the near future
 
 # gitopscon (Tuesday)
 
@@ -573,3 +574,58 @@ This is cool b/c we can then edit the code, run it in the cluster, and then cont
 Running chaos tests in pipelines when we integrate new work implies that we can actually **prove** that a change made the service more or less resilient
 
 We need to make chaos engineering a commodity, by making it easy and simple to do, the more chaos test we run, the better we get at it
+
+## OpenTelemetry: The vision, the reality, and how to get started
+
+"how many tools do companies use to collect telemetry data" -> research shows that most companies use between 5-10 different tools to collect telemetry -> With OpenTelemetry they want to cut that down to 1
+
+The vision: unified observability
+Metrics vs. logs vs. traces
+
+The reality: getting insights is hard, b/c we have too many different tools and too many different ways of aggregating data / instrumentation
+This also implies a tight coupling between applications and observability tools
+
+`OpenTelemetry (aka. OTEP/OTLP)` is a observability framework to capture metrics, logs and traces for cloud native software.
+OpenTelemetry is the second most active CNCF project, only after k8s!
+
+Applications generate and emit data, OTLP then collects data, processes it and exports results
+
+OpenTelemetry specifies cross-language API spec, SDK spec and Data spec for metrics, logs and traces
+
+Instrumentation of applications is handled with client libraries for languages -> the goal is low-code/no-code application instrumentation, but with flexible and powerful features -> "auto instrumentation" for low barrier-to-entry and black-box observability
+
+`Collection` is handled by a `receiver`, which is then `processed`, and `exported` -> we can then use any combination of receivers, processors and exporters
+
+`OTLP protocol` is a generic protocol to send telemetry, supports gRPC and HTTP 1.1, encoding is protobuf, provides a telemetry data model -> the protocol is what connects the receivers, processors and exporters, and allows for the generic architecture
+
+"Is OTLP production ready?" -> "well... it depends"
+
+State of OTLP:
+
+- Traces
+  - API, SDK, Protocol considered stable
+  - many client libraries
+- Metrics
+  - Release candidate expected within a couple of weeks
+  - API, SDK, protocol stable
+  - Many client libraries, more coming soon
+  - Prometheus support
+- Logs
+  - Hope to be stable during 2022
+  - Protocol is stable
+  - API, SDK experimental
+  - log appenders for many languages are under development
+  - focus on integrating with existing logging systems
+
+How to get started with OTLP?
+
+Start with knowing your stack:
+
+- which languages? Multiple?
+- which signals? (metrics, logs, traces)
+- which protocols? (prometheus, jaeger, etc.)
+- which analytics tools? (which exporters to you need?)
+
+When you know these, check the status of components, and figure out what to use
+
+> TODO check out hello-world OTLP guide, https://bit.ly/otel-kubecon
