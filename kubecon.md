@@ -629,3 +629,44 @@ Start with knowing your stack:
 When you know these, check the status of components, and figure out what to use
 
 > TODO check out hello-world OTLP guide, https://bit.ly/otel-kubecon
+
+## Recreating production problems in the CI pipeline with eBPF
+
+"I hate writing tests" -> so let's try to test without writing manual tests
+
+We want to capture production data, and then replay that on our new version as part of the CI pipeline
+
+"Treat your tests like cattle, not pets"
+
+ways to replay traffic for testing:
+
+- traffic mirroring (mirror prod traffic)
+- traffic replay
+  - capture prod traffic, save to persistent storage, then later replay on new version of app in CI pipeline
+
+How to capture traffic? Also service-to-service?
+
+`pixie` CNCF observability platform, automatically trace network in cluster, also CPU profiles, and others.
+Philosophy is no code modification and no redeployment
+
+eBPF?
+"acts a bit like a breakpoint in a debugger" -> but runs a small program called a `probe`
+Define probes, when specific things happen in the code, and then execute eBPF program, when the probe is triggered.
+Should have negligible impact on performance, very efficient.
+
+Pixie will trace all network traffic, by "snooping" on the kernel.
+This is important, b/c it makes pixie independent of runtime/architecture.
+Kernel level tracing -> no blind spots.
+Can work with TLS'd traffic, by hooking into encryption libraries.
+
+Pixie is deployed as a daemon set, which runs the pixie PEM (pixie edge module), which collects data.
+Data can be queried with a high-level pandas interface.
+
+> Where is data stored?
+
+Pixie comes with a UI that can visualize network traces between services -> which is done automatically.
+
+Integraging Pixie:
+
+- input PxL script to capture data
+- output is the data ...
