@@ -888,3 +888,19 @@ Tips, tricks and takeaways:
 - Deep learning takes time!
 
 > Check out the slides, https://bit.ly/ChartingYourCourseKubeCon
+
+## Throw away your password and trusting machine identity
+
+> Check out the slides
+
+### Nicolajs summary:
+
+"Secret zero" bootstrapping is solved with OIDC, it's fairly simple to script your way out of if you know what these hardcore principles mean.
+OIDC is here to stay.
+Trusted Processing Module (TPM) integration looks exciting in the future.
+When I say simple, it's like managing a nuclear reactor is simple.
+SPIFFE is a standard, and SPIRE can self host an OIDC provider, if you are not using eg. a cloud provider.
+
+## Kubectl said what?
+
+> Slides have a nice overview of different states one might encounter when deploying to k8s, and steps to debug and diagnose these conditions.
