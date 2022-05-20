@@ -763,4 +763,78 @@ Next up in the xbox linkerd journey:
 - multi cluster communication and failover
 - proactive fault injection, chaos engineering
 
+# KubeCon Day 3
 
+## From cloud naive to cloud native
+
+"Going to the cloud is easy today ... you just need a credit card"
+
+But it is up to you to actually make going to the cloud a success, and actually add value.
+
+"Using cloud native tools, doesn't just magically make your application cloud native"
+
+The clound native pyramide:
+
+- CN is not a tool, a process or an object - it's a mindset you have to adopt, as well as a kind of unformalized methodology
+- Internal development platform -> automated, dev centric operations supporting hyper converged infrastructure. Usually supported by containers and k8s.
+- Business Requirements <-> Application development
+- Infrastructure -> is seen as the real challenge of adoptin CN
+
+But the most important part is the foundation -> **the mindset** -> you can't train or buy a mindset, it must be cultivated -> culture is what matters.
+
+Cloud based/using vs cloud native -> the imprortant difference is mindset and culture.
+
+Misconceptions:
+
+- "k8s is just a new hypervisor I run stuff on" -> k8s is two things:
+  - a platform to build cross-platform platforms
+  - a system to manage, enrich and run your applications
+- "k8s is treated as a one time implementation; build once, hand over to ops" -> companies need to start thinking in products and not projects
+- "we hand out great blueprints and best practices and are enabled to mass migrate to a cloud" -> you need to actually guide and consult your ICT - typically the group of people understanding CN is very small
+
+Most applications are legacy, and are not made for running in a container orchestrated fashion.
+By missing experience (on the dev side), new projects are not created with k8s in mind.
+
+"How to stay on the CN side?":
+
+- mindset is the most important
+- mass migrating services created it's own set of problems
+- identify the group of motivated people and enable them
+- You must start from the beginning, there are no shortcuts ...
+- Adopting cloud does not make you a CN business, it can only enhance it
+
+"Companies choose cloud provider by cost ...", though the actual cost is not transparent -> cost of migration and knowledge loss can be a lot more costly.
+
+"The platforms you build will be used forever" -> projects are timed and then terminated, leaving whatever is there to run.
+
+Treat your internal development platform as **long lived**.
+
+Development and product management:
+
+- dev tools are sometimes more important than production systems
+- don't build for one deployment, build for continous change
+
+k8s:
+
+- implement security, rbac and network policies from day 1 -> b/c it only gets more complicated the longer you wait
+- don't skip the basics -> use liveness/readiness probes as well as resource requests/limits -> ensure apps can scale horizontally
+
+multi-cluster vs single cluster: "well it depends"
+
+Managing k8s clusters, anyone should be good with:
+
+- automation of provisioning
+- favor declarative vs scripts
+- should be easy to create/tear down clusters
+- build features you need, not fancy
+
+Do not over-engineer:
+
+- overly complex chained CI/CD processes
+- homebrew cloud dev kits
+
+> TOOD look over slides
+
+Use open source, KISS.
+Design and build for change.
+Think about the end user who is not a k8s expert.
