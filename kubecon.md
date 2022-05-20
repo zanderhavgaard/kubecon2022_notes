@@ -838,3 +838,53 @@ Do not over-engineer:
 Use open source, KISS.
 Design and build for change.
 Think about the end user who is not a k8s expert.
+
+## "It's always DNS, expcept when it isn't"
+
+Good war story.
+
+The takeaway was that they had made a change to the gRPC connection to suit their needs, until they changed the setup, and it ended up causing some very hard to diagnose issues.
+
+## Charting your own course through the Cloud Native landscape
+
+How do you start researching a **big** topic (like k8s)?
+
+It's helpful to have a planned pattern that you can repeat.
+
+Create a feedback loop:
+collect -> skim -> refine -> learn -> collect -> ...
+
+At first you dont know what you dont know ... -> what concepts keep coming up? -> should I pay attention to them? -> look for Patterns
+
+What assumed knowledge are they expecting me to have ?
+
+When getting into k8s, they expect you to know linux, containers, network, etc. ... -> figure what assumed knowledge you need.
+
+What resources resonate for you ? -> know what works, and what you get the most out of. Should you start with "k8s the hard way" or something simpler?
+
+Loop of:
+
+- define reasonable goals
+- do reasonable goals
+
+Find joy in the progress!
+
+The goal is to keep learning at a consistent pace, and to feel that you keep learning at the right pace -> flow?
+
+"How do I become a better comedian?", "You write better jokes.", "How do I write better jokes?", "you do it a lot, consistently, everyday".
+
+Questions:
+
+- what is your own personal level of tech experience?
+- how much time do you have to do learning?
+- what is your learning style?
+
+Tips, tricks and takeaways:
+
+- Find the resources that work for you
+- Create sustianable habits for studying / learning
+- Be good to yourself
+- Find a mentor
+- Deep learning takes time!
+
+> Check out the slides, https://bit.ly/ChartingYourCourseKubeCon
