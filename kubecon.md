@@ -904,3 +904,61 @@ SPIFFE is a standard, and SPIRE can self host an OIDC provider, if you are not u
 ## Kubectl said what?
 
 > Slides have a nice overview of different states one might encounter when deploying to k8s, and steps to debug and diagnose these conditions.
+
+## Crossplane intro and deep dive
+
+What is crossplane?:
+
+- framework for building cloud native control planes
+  - without writing code
+- cloud providers have been building control planes for a long time
+  - k8s is a control plane for containers
+  - crossplane helps you build your own, with your own opinions
+- extensible backend to manage any infrastructure in any environment
+
+"Crossplane is neutral place for vendors and individuals to come together in creating and enabling control planes"
+
+It's a growing project
+
+### The basics: managed resources
+
+> TODO read the slides again
+
+Managed resource -> k8s representation of a resource that exists outside k8s
+
+AWS Examples:
+
+- certs
+- SQS
+- caches
+- k8s clusters
+- etc...
+
+Every **kind** represents a type of resource
+
+`spec.forProvider` is where we declare how to configure the resource
+
+managed resource reconciliation:
+
+- Controllers reconcile CRDs with cloud providers and other APIs
+- RDS controller runs in the cluster and does the actual reconciliation
+
+Crossplane is asynchronous and runs in a loop, like all other controllers.
+
+### Building your control plane: composition
+
+- Assemble your own resources from multiple vendors/clouds
+
+`Coposite resources` aka `XRD`.
+Combines a group of other resources into a single resource.
+
+Values can be propagated from resource to resource in a XRD using `pathces`.
+
+### Extending crossplane
+
+- Crossplane is highly extensible
+- backend - `Providers`
+  - you can build a provider to manage anything with an API
+- Frontend - `Configurations`
+
+devs -> Configuraitons / API -> crossplane (control plane) -> providers -> cloud providers (AWS, DO etc.) / other APIs
